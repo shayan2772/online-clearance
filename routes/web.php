@@ -22,7 +22,15 @@ use App\Http\Controllers\ClearanceFormController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/theme-login');
+});
+
+Route::get('/theme-register', function () {
+    return view('theme.auth.register');
+});
+
+Route::get('/theme-login', function () {
+    return view('theme.auth.login');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -57,14 +65,6 @@ Route::get('/app', function () {
 Route::get('/clearance', function () {
     return view('theme.student.clearanceForm');
 })->middleware(['auth'])->name('clearance');
-
-Route::get('/theme-register', function () {
-    return view('theme.auth.register');
-});
-
-Route::get('/theme-login', function () {
-    return view('theme.auth.login');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
