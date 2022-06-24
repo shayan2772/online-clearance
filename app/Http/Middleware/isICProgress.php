@@ -19,7 +19,7 @@ class isICProgress
         if(auth()->user() && auth()->user()->role === 'I/C Progress'){
             return $next($request);
         } else {
-            return redirect('login')->with('error',"Unauthorize access.");;
+            return redirect()->back()->with('error',"Unauthorize access.");;
         }
     }
 }

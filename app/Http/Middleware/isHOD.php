@@ -19,7 +19,7 @@ class isHOD
         if(auth()->user() && auth()->user()->role === 'HOD'){
             return $next($request);
         } else {
-            return redirect('login')->with('error',"Unauthorize access.");;
+            return redirect()->back()->with('error',"Unauthorize access.");;
         }
     }
 }
