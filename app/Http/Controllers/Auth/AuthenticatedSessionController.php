@@ -71,6 +71,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/app');
+        return redirect('/theme-login');
     }
 }

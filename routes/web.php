@@ -58,16 +58,16 @@ Route::get('/test', function () {
     }
 });
 
-Route::get('/app', function () {
-    return view('theme.app');
-})->middleware(['auth'])->name('app');
+// Route::get('/app', function () {
+//     return view('theme.app');
+// })->middleware(['auth'])->name('app');
 
-Route::get('/clearance', function () {
-    return view('theme.student.clearanceForm');
-})->middleware(['auth'])->name('clearance');
+// Route::get('/clearance', function () {
+//     return view('theme.student.clearanceForm');
+// })->middleware(['auth'])->name('clearance');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
