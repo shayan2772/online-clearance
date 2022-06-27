@@ -85,29 +85,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-Route::get('/test', function () {
-    // $user = Department::find(1)->users()->where('department_code', 'G-001')->get();
-    // $user->departments()->attach(3);
-    // dd($user->departments);
-    $user = Department::where('department_name', 'I/C Library')->first()->users()->get();
-    // $user = user::find(1)->departments()->where('department_code', 'G-001')->get();
-    dd($user[0]->pivot);
-    foreach ($user->departments as $department) {
-        echo $department;
-    }
-});
-
-// Route::get('/app', function () {
-//     return view('theme.app');
-// })->middleware(['auth'])->name('app');
-
-// Route::get('/clearance', function () {
-//     return view('theme.student.clearanceForm');
-// })->middleware(['auth'])->name('clearance');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
