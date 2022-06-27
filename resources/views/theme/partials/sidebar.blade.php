@@ -39,7 +39,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item" href="{{route('clearanceForm')}}">Clearance Form</a>
-                <a class="collapse-item" href="cards.html">Clearance Status</a>
+                <a class="collapse-item" href="{{route('clearanceStatus')}}">Clearance Status</a>
             </div>
         </div>
     </li>

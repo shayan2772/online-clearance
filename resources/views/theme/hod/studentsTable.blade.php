@@ -36,9 +36,9 @@
                                     <td><span class="badge rounded-pill bg-danger">Not clear</span></td>
                                 @endif
                                 @if ($student->pivot->department_clearance_status)
-                                    <td><button class="btn btn-danger btn-sm">Unclear</button></td>
+                                    <td><a href="{{route('hodUnclearStudentStatus', ['id' => $student->id])}}" class="btn btn-danger btn-sm">Unclear</a></td>
                                 @else
-                                    <td><button class="btn btn-success btn sm">Clear</button></td>
+                                    <td><a href="{{route('hodClearStudentStatus', ['id' => $student->id])}}" class="btn btn-success btn sm">Clear</a></td>
                                 @endif
 
                             </tr>

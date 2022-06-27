@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
             return redirect('/accounts-students-table');
         }
         else {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect('/theme-login');
         }
 
         // return redirect()->intended(RouteServiceProvider::HOME);

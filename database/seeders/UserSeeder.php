@@ -50,14 +50,12 @@ class UserSeeder extends Seeder
                 'email'=>'student1@student1.com',
                 'password'=> bcrypt('12345678'),
                 'role'=>'Student',
-                'clearance_status'=> 0,
             ],
             [
                 'name'=>'Student2',
                 'email'=>'student2@student2.com',
                 'password'=> bcrypt('12345678'),
                 'role'=>'Student',
-                'clearance_status'=> 0,
             ],
         ];
 

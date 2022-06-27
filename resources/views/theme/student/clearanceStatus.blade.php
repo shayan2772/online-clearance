@@ -3,7 +3,7 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Research Cell / Students</h1>
+    <h1 class="h3 mb-0 text-gray-800">Clearance Status</h1>
     {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Apply</a> --}}
 </div>
@@ -12,35 +12,26 @@
 <div class="">
     <div class="card shadow">
         <div class="card-header">
-          Students
+            Clearance Status
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="studentTable" class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th scope="col">Roll number</th>
-                        <th scope="col">Student Name</th>
+                        <th scope="col">Department Name</th>
                         <th scope="col">Clearance Status</th>
-                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($students as $student)
+                        @foreach ($departments as $department)
                             <tr>
-                                <td>{{$student->roll_no}}</td>
-                                <td>{{$student->name}}</td>
-                                @if ($student->pivot->department_clearance_status)
+                                <td>{{$department->department_name}}</td>
+                                @if ($department->pivot->department_clearance_status)
                                     <td><span class="badge rounded-pill bg-success">Clreared</span></td>
                                 @else
                                     <td><span class="badge rounded-pill bg-danger">Not clear</span></td>
                                 @endif
-                                @if ($student->pivot->department_clearance_status)
-                                    <td><a href="{{route('researchCellUnclearStudentStatus', ['id' => $student->id])}}" class="btn btn-danger btn-sm">Unclear</a></td>
-                                @else
-                                    <td><a href="{{route('researchCellClearStudentStatus', ['id' => $student->id])}}" class="btn btn-success btn sm">Clear</a></td>
-                                @endif
-
                             </tr>
                         @endforeach
                     </tbody>
@@ -52,9 +43,9 @@
 @endsection
 
 @section('script')
-<script>
+{{-- <script>
     $(document).ready( function () {
     $('#studentTable').DataTable();
     });
-</script>
+</script> --}}
 @endsection
