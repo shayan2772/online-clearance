@@ -28,9 +28,9 @@
                             <tr>
                                 <td>{{$department->department_name}}</td>
                                 @if ($department->pivot->department_clearance_status)
-                                    <td><span class="badge rounded-pill bg-success">Clreared</span></td>
+                                    <td><span class="badge rounded-pill bg-success" style="color: white;">Clreared</span></td>
                                 @else
-                                    <td><span class="badge rounded-pill bg-danger">Not clear</span></td>
+                                    <td><span class="badge rounded-pill bg-danger" style="color: white;">Not clear</span></td>
                                 @endif
                             </tr>
                         @endforeach

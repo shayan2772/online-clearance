@@ -65,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/accounts-students-table', [AccountsController::class, 'getStudentsTable'])->middleware(['isAccountant'])->name('accountsStudentsTable');
     Route::get('/clearance-form', [ClearanceFormController::class, 'index'])->middleware(['isStudent'])->name('clearanceForm');
 
+    Route::post('/submit-clearance-form', [ClearanceFormController::class, 'storeClearanceForm'])->middleware(['isStudent'])->name('submitClearanceForm');
+
     Route::get('/clearance-status', [ClearanceStatusController::class, 'index'])->middleware(['isStudent'])->name('clearanceStatus');
 
     Route::get('/account-unclear-student-status/{id}', [AccountsController::class, 'unclearStudentStatus'])->middleware(['isAccountant'])->name('accountUnclearStudentStatus');

@@ -31,9 +31,9 @@
                                 <td>{{$student->roll_no}}</td>
                                 <td>{{$student->name}}</td>
                                 @if ($student->pivot->department_clearance_status)
-                                    <td><span class="badge rounded-pill bg-success">Clreared</span></td>
+                                    <td><span class="badge rounded-pill bg-success" style="color: white;">Clreared</span></td>
                                 @else
-                                    <td><span class="badge rounded-pill bg-danger">Not clear</span></td>
+                                    <td><span class="badge rounded-pill bg-danger" style="color: white;">Not clear</span></td>
                                 @endif
                                 @if ($student->pivot->department_clearance_status)
                                     <td><a href="{{route('researchCellUnclearStudentStatus', ['id' => $student->id])}}" class="btn btn-danger btn-sm">Unclear</a></td>

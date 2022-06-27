@@ -15,9 +15,9 @@
           Personal Information
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="{{ route('register') }}">
+            <form class="user" method="POST" action="{{ route('submitClearanceForm') }}">
                 @csrf
-                
+
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <input type="text" class="form-control form-control-user" name="studentName"
@@ -43,11 +43,11 @@
                             placeholder="Address" required>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button id="next" type="button" class="btn btn-primary btn-user">
+                        <button id="next" type="submit" class="btn btn-primary btn-user">
                             Submit
                         </button>
                     </div>
-                
+
                 {{-- <div id="form2" class="d-none">
                     <div class="form-group ml-1">
                         <div class="custom-control custom-checkbox small">
