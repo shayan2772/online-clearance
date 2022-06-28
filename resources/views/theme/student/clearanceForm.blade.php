@@ -4,11 +4,20 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Clearance Form</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Apply</a>
+    {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Apply</a> --}}
 </div>
 
 <!-- Content Row -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="">
     <div class="card shadow">
         <div class="card-header">
@@ -30,11 +39,11 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" name="studentCNIC"
+                            <input type="text" class="form-control form-control-user" name="cnic"
                                 id="studentCNIC" placeholder="Student CNIC" required>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control form-control-user" name="contactNumber"
+                            <input type="text" class="form-control form-control-user" name="contact_no"
                                 id="contactNumber" placeholder="Contact Number" required>
                         </div>
                     </div>
