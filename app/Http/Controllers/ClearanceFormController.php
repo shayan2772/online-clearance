@@ -26,12 +26,32 @@ class ClearanceFormController extends Controller
             'address' => ['required', 'string', 'max:255'],
         ]);
 
-        $user = auth()->user()->update([
+        auth()->user()->update([
             'father_name' => $request->fatherName,
-            'cnic' => $request->studentCNIC,
-            'contact_no' => $request->contactNumber,
+            'cnic' => $request->cnic,
+            'contact_no' => $request->contact_no,
             'address' => $request->address,
         ]);
+
+        $statuses = auth()->user()->departments()->get();
+
+        $checkStatus = 1;
+
+        foreach ($statuses as $status) {
+            if($status->pivot->department_clearance_status) {
+                continue;
+            }
+            else {
+                $checkStatus = 0;
+                break;
+            }
+        }
+
+        $user = auth()->user();
+
+        $user->clearance_status = $checkStatus;
+
+        $user->save();
 
         return redirect()->route('clearanceStatus');
     }

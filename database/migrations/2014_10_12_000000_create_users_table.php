@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('roll_no')->unique()->nullable();
             $table->string('contact_no')->nullable();
             $table->string('address')->nullable();
-            $table->boolean('clearance_status')->nullable()->default(true);
+            $table->boolean('clearance_status')->nullable()->default(false);
             $table->boolean('payment_status')->nullable()->default(false);
             $table->string('role')->nullable();
             $table->timestamp('email_verified_at')->nullable();

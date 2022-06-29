@@ -10,6 +10,7 @@ use App\Http\Controllers\ICProgressController;
 use App\Http\Controllers\ResearchCellController;
 use App\Http\Controllers\ClearanceFormController;
 use App\Http\Controllers\ClearanceStatusController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::get('/theme-register', function () {
 Route::get('/theme-login', function () {
     return view('theme.auth.login');
 });
+
+// Route::get('/pdf', function () {
+//     return view('theme.student.clearanceCertificate');
+// });
 
 Route::middleware(['auth'])->group(function () {
 
@@ -83,6 +88,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/ic-progress-unclear-student-status/{id}', [ICProgressController::class, 'unclearStudentStatus'])->middleware(['isICProgress'])->name('icProgressUnclearStudentStatus');
     Route::get('/ic-progress-student-status/{id}', [ICProgressController::class, 'clearStudentStatus'])->middleware(['isICProgress'])->name('icProgressClearStudentStatus');
+
+    Route::get('generate-certificate', [PDFController::class, 'generatePDF'])->middleware(['isStudent'])->name('generateCertificate');
 
 });
 
