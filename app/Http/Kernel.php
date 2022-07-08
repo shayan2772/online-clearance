@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'isLibrarian'=> \App\Http\Middleware\isLibrarian::class,
         'isResearchCell'=> \App\Http\Middleware\isResearchCell::class,
         'isStudent'=> \App\Http\Middleware\isStudent::class,
+        'isAdmin'=> \App\Http\Middleware\isAdmin::class,
     ];
 }

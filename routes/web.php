@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Department;
@@ -58,6 +59,9 @@ Route::middleware(['auth'])->group(function () {
         elseif (auth()->user()->role === 'Accounts') {
             return redirect('/accounts-students-table');
         }
+        elseif (auth()->user()->role === 'Admin') {
+            return redirect('/admin-students-table');
+        }
         else {
             return redirect('/theme-login');
         }
@@ -68,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/research-cell-students-table', [ResearchCellController::class, 'getStudentsTable'])->middleware(['isResearchCell'])->name('researchCellStudentsTable');
     Route::get('/ic-progress-students-table', [ICProgressController::class, 'getStudentsTable'])->middleware(['isICProgress'])->name('icProgressStudentsTable');
     Route::get('/accounts-students-table', [AccountsController::class, 'getStudentsTable'])->middleware(['isAccountant'])->name('accountsStudentsTable');
+    Route::get('/admin-students-table', [AdminController::class, 'getStudentsTable'])->middleware(['isAdmin'])->name('adminStudentsTable');
+
     Route::get('/clearance-form', [ClearanceFormController::class, 'index'])->middleware(['isStudent'])->name('clearanceForm');
 
     Route::post('/submit-clearance-form', [ClearanceFormController::class, 'storeClearanceForm'])->middleware(['isStudent'])->name('submitClearanceForm');

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FormSubmitted;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ClearanceFormController extends Controller
 {
@@ -38,20 +41,33 @@ class ClearanceFormController extends Controller
         $checkStatus = 1;
 
         foreach ($statuses as $status) {
-            if($status->pivot->department_clearance_status) {
-                continue;
-            }
-            else {
-                $checkStatus = 0;
-                break;
+            if ($status->id !== 2) {
+                if($status->pivot->department_clearance_status) {
+                    continue;
+                }
+                else {
+                    $checkStatus = 0;
+                    break;
+                }
             }
         }
+
+        auth()->user()->departments()->sync([2 => [ 'department_clearance_status' => $checkStatus] ], false);
 
         $user = auth()->user();
 
         $user->clearance_status = $checkStatus;
 
         $user->save();
+
+        foreach ($statuses as $status) {
+            if(!$status->pivot->department_clearance_status) {
+
+                $admin = User::find($status->pivot->department_id);
+
+                Mail::to($admin->email)->send(new FormSubmitted($admin->name));
+            }
+        }
 
         return redirect()->route('clearanceStatus');
     }

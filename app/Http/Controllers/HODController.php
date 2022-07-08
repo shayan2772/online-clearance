@@ -10,7 +10,7 @@ class HODController extends Controller
 {
     public function getStudentsTable()
     {
-        $students = Department::where('department_name', 'HOD')->first()->users()->get();
+        $students = Department::where('department_name', 'HOD')->first()->users()->where('cnic', '!=', null)->get();
         return view('theme.hod.studentsTable', ['students' => $students]);
     }
 

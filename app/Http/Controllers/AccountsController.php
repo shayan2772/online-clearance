@@ -10,7 +10,7 @@ class AccountsController extends Controller
 {
     public function getStudentsTable()
     {
-        $students = Department::where('department_name', 'Accounts')->first()->users()->get();
+        $students = Department::where('department_name', 'Accounts')->first()->users()->where('cnic', '!=', null)->get();
         return view('theme.accounts.studentsTable', ['students' => $students]);
     }
 
@@ -36,14 +36,18 @@ class AccountsController extends Controller
         $checkStatus = 1;
 
         foreach ($statuses as $status) {
-            if($status->pivot->department_clearance_status) {
-                continue;
-            }
-            else {
-                $checkStatus = 0;
-                break;
+            if ($status->id !== 2) {
+                if($status->pivot->department_clearance_status) {
+                    continue;
+                }
+                else {
+                    $checkStatus = 0;
+                    break;
+                }
             }
         }
+
+        User::find($id)->departments()->sync([2 => [ 'department_clearance_status' => $checkStatus] ], false);
 
         $user = User::find($id);
 
