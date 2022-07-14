@@ -58,4 +58,10 @@ class ResearchCellController extends Controller
 
         return redirect()->route('researchCellStudentsTable');
     }
+
+    public function submitRemarks(Request $request)
+    {
+        User::find($request->id)->departments()->sync([3 => [ 'remarks' => $request->remarks] ], false);
+        return true;
+    }
 }

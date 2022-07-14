@@ -18,6 +18,7 @@ class CreateDepartmentUserTable extends Migration
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('department_clearance_status')->nullable()->default(true);
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

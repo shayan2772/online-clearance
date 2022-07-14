@@ -53,6 +53,6 @@ class User extends Authenticatable
 
     public function departments()
     {
-        return $this->belongsToMany(Department::class)->withPivot('department_clearance_status');
+        return $this->belongsToMany(Department::class)->withPivot('department_clearance_status', 'remarks');
     }
 }

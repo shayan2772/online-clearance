@@ -58,4 +58,10 @@ class ICProgressController extends Controller
 
         return redirect()->route('icProgressStudentsTable');
     }
+
+    public function submitRemarks(Request $request)
+    {
+        User::find($request->id)->departments()->sync([4 => [ 'remarks' => $request->remarks] ], false);
+        return true;
+    }
 }

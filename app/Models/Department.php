@@ -18,6 +18,6 @@ class Department extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('department_clearance_status');
+        return $this->belongsToMany(User::class)->withPivot('department_clearance_status', 'remarks');
     }
 }

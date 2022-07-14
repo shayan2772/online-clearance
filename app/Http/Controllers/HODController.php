@@ -53,4 +53,10 @@ class HODController extends Controller
 
         return redirect()->route('hodStudentsTable');
     }
+
+    public function submitRemarks(Request $request)
+    {
+        User::find($request->id)->departments()->sync([2 => [ 'remarks' => $request->remarks] ], false);
+        return true;
+    }
 }

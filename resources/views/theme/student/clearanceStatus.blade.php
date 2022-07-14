@@ -23,6 +23,7 @@
                       <tr>
                         <th scope="col">Department Name</th>
                         <th scope="col">Clearance Status</th>
+                          <th scope="col">Remarks</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,7 @@
                                 @else
                                     <td><span class="badge rounded-pill bg-danger" style="color: white;">Not clear</span></td>
                                 @endif
+                                <td>{{$department->pivot->remarks}}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -38,7 +38,10 @@
                                 @if ($student->pivot->department_clearance_status)
                                     <td><a href="{{route('hodUnclearStudentStatus', ['id' => $student->id])}}" class="btn btn-danger btn-sm">Unclear</a></td>
                                 @else
-                                    <td><a href="{{route('hodClearStudentStatus', ['id' => $student->id])}}" class="btn btn-success btn sm">Clear</a></td>
+                                    <td><a href="{{route('hodClearStudentStatus', ['id' => $student->id])}}" class="btn btn-success btn sm">Clear</a>
+                                        <button type="button" class="btn btn-primary remarks" data-id="{{ $student->id }}" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Remarks
+                                        </button></td>
                                 @endif
 
                             </tr>
@@ -49,12 +52,64 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="user" id="remarksForm">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" name="remarks" id="remarks"
+                               placeholder="Remarks" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{--                <button type="button" class="btn btn-primary">Save changes</button>--}}
+                <button id="submit" type="button" class="btn btn-primary btn-user">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
 <script>
     $(document).ready( function () {
-    $('#studentTable').DataTable();
+        $('#studentTable').DataTable();
+
+        var studentId;
+        $('.remarks').on('click', function () {
+            studentId = $(this).data('id');
+        })
+        $('#submit').on('click', function () {
+            var data = $('#remarksForm').serialize()+'&id='+studentId
+            $.ajax({
+
+                url : `{!! route('hodSubmitRemarks') !!}`,
+                type : 'GET',
+                data : data,
+                dataType:'json',
+                success : function(data) {
+                    $('#exampleModalCenter').modal('hide');
+                },
+                error : function(request,error)
+                {
+                    alert("Request: "+JSON.stringify(request));
+                }
+            });
+        })
     });
 </script>
 @endsection

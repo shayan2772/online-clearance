@@ -57,4 +57,10 @@ class AccountsController extends Controller
 
         return redirect()->route('accountsStudentsTable');
     }
+
+    public function submitRemarks(Request $request)
+    {
+        User::find($request->id)->departments()->sync([5 => [ 'remarks' => $request->remarks] ], false);
+        return true;
+    }
 }

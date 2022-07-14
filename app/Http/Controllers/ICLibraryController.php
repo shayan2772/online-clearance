@@ -58,4 +58,10 @@ class ICLibraryController extends Controller
 
         return redirect()->route('icLibraryStudentsTable');
     }
+
+    public function submitRemarks(Request $request)
+    {
+        User::find($request->id)->departments()->sync([1 => [ 'remarks' => $request->remarks] ], false);
+        return true;
+    }
 }
