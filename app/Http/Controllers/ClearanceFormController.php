@@ -60,14 +60,7 @@ class ClearanceFormController extends Controller
 
         $user->save();
 
-        foreach ($statuses as $status) {
-            if(!$status->pivot->department_clearance_status) {
-
-                $admin = User::find($status->pivot->department_id);
-
-                Mail::to($admin->email)->send(new FormSubmitted($admin->name));
-            }
-        }
+        Mail::to('admin@admin.com')->send(new FormSubmitted('Admin'));
 
         return redirect()->route('clearanceStatus');
     }

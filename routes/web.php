@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ic-progress-students-table', [ICProgressController::class, 'getStudentsTable'])->middleware(['isICProgress'])->name('icProgressStudentsTable');
     Route::get('/accounts-students-table', [AccountsController::class, 'getStudentsTable'])->middleware(['isAccountant'])->name('accountsStudentsTable');
     Route::get('/admin-students-table', [AdminController::class, 'getStudentsTable'])->middleware(['isAdmin'])->name('adminStudentsTable');
+    Route::get('/admin-cleared-students-table', [AdminController::class, 'getClearedStudentsTable'])->middleware(['isAdmin'])->name('adminClrearedStudentsTable');
 
     Route::get('/clearance-form', [ClearanceFormController::class, 'index'])->middleware(['isStudent'])->name('clearanceForm');
 

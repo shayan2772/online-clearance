@@ -13,4 +13,11 @@ class AdminController extends Controller
         $departments = Department::with('users')->get();
         return view('theme.admin.studentsTable', ['departments' => $departments]);
     }
+
+    public function getClearedStudentsTable()
+    {
+        $departments = Department::with('users')->get();
+//        dd($departments[0]->users[0]->pivot);
+        return view('theme.admin.clearedStudentsTable', ['departments' => $departments]);
+    }
 }
