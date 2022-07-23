@@ -21,8 +21,10 @@
                       <tr>
                         <th scope="col">Roll number</th>
                         <th scope="col">Student Name</th>
-                        <th scope="col">Clearance Status</th>
-                        <th scope="col">Action</th>
+                          <th scope="col">Student Department</th>
+                          <th scope="col">Clearance Status</th>
+                          <th scope="col">Remarks</th>
+                          <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -30,10 +32,16 @@
                             <tr>
                                 <td>{{$student->roll_no}}</td>
                                 <td>{{$student->name}}</td>
+                                <td>{{$student->department}}</td>
                                 @if ($student->pivot->department_clearance_status)
                                     <td><span class="badge rounded-pill bg-success" style="color: white;">Clreared</span></td>
                                 @else
                                     <td><span class="badge rounded-pill bg-danger" style="color: white;">Not clear</span></td>
+                                @endif
+                                @if (!$student->pivot->department_clearance_status)
+                                    <td>{{$student->pivot->remarks}}</td>
+                                @else
+                                    <td></td>
                                 @endif
                                 @if ($student->pivot->department_clearance_status)
                                     <td><a href="{{route('accountUnclearStudentStatus', ['id' => $student->id])}}" class="btn btn-danger btn-sm">Unclear</a></td>

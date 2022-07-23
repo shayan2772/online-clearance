@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,8 +16,8 @@ class AdminController extends Controller
 
     public function getClearedStudentsTable()
     {
-        $departments = Department::with('users')->get();
+        $students = User::where('role', 'Student')->where('clearance_status', 1)->get();
 //        dd($departments[0]->users[0]->pivot);
-        return view('theme.admin.clearedStudentsTable', ['departments' => $departments]);
+        return view('theme.admin.clearedStudentsTable', ['students' => $students]);
     }
 }

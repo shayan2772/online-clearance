@@ -21,27 +21,24 @@
                         <tr>
                             <th scope="col">Roll number</th>
                             <th scope="col">Student Name</th>
-                            <th scope="col">Department</th>
+                            <th scope="col">Student Department</th>
                             <th scope="col">Clearance Status</th>
-                            {{--                            <th scope="col">Action</th>--}}
+                            <th scope="col">Certificate Downloaded</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($departments as $department)
-                            @foreach($department->users as $student)
-                                @if($student->pivot->department_clearance_status)
+                        @foreach ($students as $student)
                                     <tr>
                                         <td>{{$student->roll_no}}</td>
                                         <td>{{$student->name}}</td>
-                                        <td>{{$department->department_name}}</td>
-                                        @if ($student->pivot->department_clearance_status)
-                                            <td><span class="badge rounded-pill bg-success" style="color: white;">Clreared</span></td>
+                                        <td>{{$student->department}}</td>
+                                        <td><span class="badge rounded-pill bg-success" style="color: white;">Clreared</span></td>
+                                        @if($student->certificate_downloaded)
+                                            <td><span class="badge rounded-pill bg-success" style="color: white;">Yes</span></td>
                                         @else
-                                            <td><span class="badge rounded-pill bg-danger" style="color: white;">Not clear</span></td>
+                                            <td><span class="badge rounded-pill bg-danger" style="color: white;">No</span></td>
                                         @endif
                                     </tr>
-                                @endif
-                            @endforeach
                         @endforeach
                         </tbody>
                     </table>

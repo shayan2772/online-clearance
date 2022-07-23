@@ -15,12 +15,11 @@ class DepartmentUserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=7; $i <= 13; $i++) {
+        for ($i=7; $i <= 25; $i++) {
             User::find($i)->departments()->attach([1,2,3,4,5]);
             for ($j=1; $j <= 5; $j++) {
                 User::find($i)->departments()->sync([$j => [ 'department_clearance_status' => rand(0,1)] ], false);
             }
         }
-
     }
 }

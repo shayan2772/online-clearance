@@ -38,6 +38,7 @@ Route::get('/theme-login', function () {
 //     return view('theme.student.clearanceCertificate');
 // });
 
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/', function () {

@@ -24,6 +24,10 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('theme.student.clearanceCertificate', $data);
 
+        auth()->user()->certificate_downloaded = true;
+
+        auth()->user()->save();
+
         Mail::to('admin@admin.com')->send(new DownloadedClrearanceCertificate('Admin'));
 
         return $pdf->download('clearanceCertificate.pdf');
